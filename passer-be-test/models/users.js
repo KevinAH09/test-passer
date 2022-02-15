@@ -4,11 +4,12 @@ const { postgresql } = require('../databases/postgresql')
  * Get an specific user
  * @param {number} pk_user User primary key
  * @param {string} name User name
+ * @param {boolean} status User status
  * @returns {{pk_user: 1, name: "Juan"}}
  */
-const createUser = (pk_user, name) => {
+const createUser = (pk_user, name, status) => {
     try {
-        let user = postgresql.public.one(`insert into users values ('${pk_user}', '${name}', status) returning *;`);
+        let user = postgresql.public.one(`insert into users values ('${pk_user}', '${name}', '${status}') returning *;`);
         return user
     }
     catch (e) {
