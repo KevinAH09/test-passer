@@ -15,7 +15,7 @@ const getUser = async (req, res, next) => {
 const createUser = async (req, res, next) => {
     const { pk_user, name, status } = req.query
     try {
-        let user = users.createUser(pk_user, name, status)
+        let user = await users.createUser(pk_user, name, status)
         res.status(200).send(user)
         next()
     } catch (e) {
@@ -27,7 +27,7 @@ const updateUser = async (req, res, next) => {
     const { pk_user } = req.params
     const { name, status } = req.query
     try {
-        let user = users.updateUser(pk_user, name, status)
+        let user = await users.updateUser(pk_user, name, status)
         res.status(200).send(user)
         next()
     } catch (e) {

@@ -22,7 +22,7 @@ const getUser = async (pk_user) => {
  */
 const createUser = async (pk_user, name, status) => {
     try {
-        return usersModel.createUser(pk_user, name, status)
+        return await usersModel.createUser(pk_user, name, status)
     } catch (e) {
         throw new Error(e.message)
     }
@@ -37,7 +37,7 @@ const createUser = async (pk_user, name, status) => {
  */
 const updateUser = async (pk_user, name, status) => {
     try {
-        return usersModel.updateUser(pk_user, name, status)
+        return await usersModel.updateUser(pk_user, name, status)
     } catch (e) {
         throw new Error(e.message)
     }
@@ -48,7 +48,7 @@ const updateUser = async (pk_user, name, status) => {
  * @param {number} pk_user User id
  * @returns {{pk_user: 1, name: "Juan"}}
  */
- const deleteUser = async (pk_user) => {
+const deleteUser = async (pk_user) => {
     try {
         return await usersModel.deleteUser(pk_user)
     } catch (e) {
