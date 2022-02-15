@@ -2,9 +2,10 @@ const users = require('../../services/users')
 
 describe('users main functions', () => {
     // createUser function test
-    test('createUser with {pk_user: 5, name: "Carlos"}', async () => {
-        let user = await users.createUser(5, "Carlos");
+    test('createUser with {pk_user: 5, name: "Carlos", status: true}', async () => {
+        let user = await users.createUser(5, "Carlos", true);
         expect(user.pk_user).toBe(5);
+
     });
 
     // getUser function test
@@ -12,4 +13,6 @@ describe('users main functions', () => {
         let user = await users.getUser(123)
         expect(user.pk_user).toBe(123);
     });
+
+    
 })
