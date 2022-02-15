@@ -16,6 +16,7 @@ const createUser = async (req, res, next) => {
     const { pk_user, name, status } = req.query
     try {
         let user = users.createUser(pk_user, name, status)
+        console.log(user)
         res.status(200).send(user)
         next()
     } catch (e) {
@@ -36,10 +37,24 @@ const updateUser = async (req, res, next) => {
     }
 }
 
+const deleteUser = async (req, res, next) => {
+    const { pk_user } = req.params
+    try {
+        let user = await users.deleteUser(pk_user)
+        console.log(user)
+        res.status(200).send(user)
+        next()
+    } catch (e) {
+        console.log(e.message)
+        res.sendStatus(500) && next(e)
+    }
+}
+
 
 
 module.exports = {
     getUser,
     createUser,
-    updateUser
+    updateUser,
+    deleteUser
 }
