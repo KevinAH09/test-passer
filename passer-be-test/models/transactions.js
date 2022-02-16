@@ -31,6 +31,22 @@ const getTransaction = (pk_transaction) => {
         throw new Error(e)
     }
 }
+
+/**
+ * Get transactions as espcific fk_user
+ * @param {number} fk_user transaction foreign key users
+ * @returns {[{pk_transaction: 1, fk_user: 123, description: "Ejemplo", amount: 1213}]} transaction schema
+ */
+ const getTransactionByfk_user = (fk_user) => {
+    try {
+        let transaction = postgresql.public.many(`select * from transactions where fk_user = ${fk_user}`);
+        return transaction
+    }
+    catch (e) {
+        throw new Error(e)
+    }
+}
+
 /**
  * Update an specific transaction
  * @param {number} pk_transaction transaction primary key
@@ -53,6 +69,7 @@ const updateTransaction = (pk_transaction, fk_user, description, amount) => {
 module.exports = {
     createTransaction,
     getTransaction,
-    updateTransaction
+    updateTransaction,
+    getTransactionByfk_user
 
 }

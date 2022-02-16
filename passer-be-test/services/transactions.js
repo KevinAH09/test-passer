@@ -34,6 +34,20 @@ const getTransaction = async (pk_transaction) => {
 }
 
 /**
+ * Get transactions as espcific fk_user
+ * @param {number} fk_user transaction foreign key users
+ * @returns {[{pk_transaction: 1, fk_user: 123, description: "Ejemplo", amount: 1213}]} transaction schema
+ */
+const getTransactionByfk_user = async (fk_user) => {
+    try {
+        return await transactionsModel.getTransactionByfk_user(fk_user);
+    }
+    catch (e) {
+        throw new Error(e)
+    }
+}
+
+/**
  * Update an specific transaction
  * @param {number} pk_transaction transaction primary key
  * @param {number} fk_user transaction foreign key users
@@ -54,5 +68,6 @@ const updateTransaction = async (pk_transaction, fk_user, description, amount) =
 module.exports = {
     createTransaction,
     getTransaction,
-    updateTransaction
+    updateTransaction,
+    getTransactionByfk_user
 }

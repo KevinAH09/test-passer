@@ -25,6 +25,21 @@ const getTransaction = async (req, res, next) => {
         res.sendStatus(500) && next(e)
     }
 }
+
+const getTransactionByfk_user = async (req, res, next) => {
+    const { fk_user } = req.params
+    try {
+        let transaction = await transactions.getTransactionByfk_user(fk_user);
+        res.status(200).send(transaction)
+        next()
+    }
+    catch (e) {
+        console.log(e.message)
+        res.sendStatus(500) && next(e)
+    }
+}
+
+
 const updateTransaction = async (req, res, next) => {
     const { pk_transaction } = req.params
     const { fk_user, description, amount } = req.query
@@ -41,5 +56,6 @@ const updateTransaction = async (req, res, next) => {
 module.exports = {
     createTransaction,
     getTransaction,
-    updateTransaction
+    updateTransaction,
+    getTransactionByfk_user
 }
